@@ -1,39 +1,36 @@
 <!DOCTYPE html>
-<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
-<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
-<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
-<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"><!--<![endif]-->
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
+<html lang="en" class="no-js">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title><g:layoutTitle default="Grails"/></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="${assetPath(src: 'favicon.ico')}" type="image/x-icon">
-    <link rel="apple-touch-icon" href="${assetPath(src: 'apple-touch-icon.png')}">
-    <link rel="apple-touch-icon" sizes="114x114" href="${assetPath(src: 'apple-touch-icon-retina.png')}">
+
     <!--设置Base-->
     <base href="<%=basePath%>"/>
 
     <asset:stylesheet src="application.css"/>
 
     <!--引入easyui的相关内容-->
-    <!--引入easyui的相关内容-->
     <asset:stylesheet src="easyui/themes/default/easyui.css"/>
     <asset:stylesheet src="easyui/themes/icon.css"/>
     <asset:stylesheet src="easyui/themes/color.css"/>
 
-    <!--引入jQuery的代码-->
-    <g:javascript library="jquery" plugin="jquery"/>
+    <!--引入CUP的相关内容-->
+    <asset:stylesheet src="cn/edu/cup/cupEasyUi.css"/>
+
     <!--asset:stylesheet src="easyui/themes/bootstrap/easyui.css"/-->
     <!--JS加载-->
     <asset:javascript src="jquery-2.2.0.min.js"/>
 
     <asset:javascript src="easyui/jquery.easyui.min.js"/>
+
+    <!--用户自定义的-->
+    <asset:javascript src="cn/edu/cup/common/common.js"/>
 
     <g:layoutHead/>
 </head>
