@@ -7,13 +7,13 @@
 </head>
 <body>
 <div id="appTabs" class="easyui-tabs">
-    <div title="运行中...">
+    <div title="运行中..." id="appsRunningDiv">
         1
     </div>
-    <div title="硬盘中...">
+    <div title="硬盘中..." id="appsInHardDiskDiv">
         2
     </div>
-    <div title="数据库...">
+    <div title="数据库..." id="appsInDBDiv">
         3
     </div>
 </div>
