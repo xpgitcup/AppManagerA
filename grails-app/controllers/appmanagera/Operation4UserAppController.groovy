@@ -1,6 +1,17 @@
 package appmanagera
 
+import grails.converters.JSON
+
 class Operation4UserAppController {
+
+    def countAppsRunning() {
+        def result = [count: 10]
+        if (request.xhr) {
+            render result as JSON
+        } else {
+            result
+        }
+    }
 
     def getAppsRunning() {
         def apps = []

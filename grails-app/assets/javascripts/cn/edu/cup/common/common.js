@@ -147,10 +147,9 @@ function ajaxRun(url, id, divId) {
 * */
 
 function tabPagesManager(tabsName, tabNameList) {
-    var tabsDiv = tabsName + 'Div';
     var defaultTab = tabNameList[0];
     var currentTab = readCookie("current" + tabsName, defaultTab);
-    tabsDiv = $("#" + tabsDiv);
+    var tabsDiv = $("#" + tabsName);
 
     tabsDiv.tabs("select", currentTab);
 
@@ -167,14 +166,17 @@ function tabPagesManager(tabsName, tabNameList) {
 /*
 * 通用标签页显示程序
 * */
-function tabDisplaySettings(tabName) {
-    var tabDiv = tabName + 'Div';
-    tabDiv = $("#" + tabDiv);
+function tabDisplaySettings(tabName, counter, lister) {
+    var tabDiv = $("#" + tabName);
     console.info(tabDiv);
+
+    var listFunction = eval(lister);
+    console.info("传入的参数：" + lister);
+    console.info(listFunction);
 
     var currentPage = readCookie("currentPage" + tabName, 1);
     var pageSize = readCookie("pageSize" +  tabName, pageSize);
-    var totalCount = 20; //这是一个关键点
+    var totalCount = ajaxCalculate(counter)
 
     //分页
     tabDiv.pagination({
@@ -185,7 +187,7 @@ function tabDisplaySettings(tabName) {
         layout: ['first', 'prev', 'links', 'next', 'last'],
         //翻页函数
         onSelectPage: function (pageNumber, pageSize) {
-            listDataDictionary4Data(pageNumber, pageSize);
+            listFunction(pageNumber, pageSize);
             $.cookie("currentPgae" + tabName, pageNumber);
         }
     });
