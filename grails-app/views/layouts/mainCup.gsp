@@ -23,11 +23,13 @@
     <!--引入CUP的相关内容-->
     <asset:stylesheet src="cn/edu/cup/cupEasyUi.css"/>
 
-    <!--asset:stylesheet src="easyui/themes/bootstrap/easyui.css"/-->
     <!--JS加载-->
     <asset:javascript src="jquery-2.2.0.min.js"/>
 
     <asset:javascript src="easyui/jquery.easyui.min.js"/>
+    <asset:stylesheet src="jquery-ui/jquery-ui.min.css"/>
+
+    <asset:javascript src="jquery/jquery.cookie.js"/>
 
     <!--用户自定义的-->
     <asset:javascript src="cn/edu/cup/common/common.js"/>

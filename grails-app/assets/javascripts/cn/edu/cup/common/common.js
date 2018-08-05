@@ -142,3 +142,53 @@ function ajaxRun(url, id, divId) {
     }
 }
 
+/*
+* 通用的tab页管理函数
+* */
+
+function tabPagesManager(tabsName, tabNameList) {
+    var tabsDiv = tabsName + 'Div';
+    var defaultTab = tabNameList[0];
+    var currentTab = readCookie("current" + tabsName, defaultTab);
+    tabsDiv = $("#" + tabsDiv);
+
+    tabsDiv.tabs("select", currentTab);
+
+    tabsDiv.tabs({
+            onSelect: function (title, index) {
+                console.info(tabsName + "--选择标签：" + title + "--" + index);
+                $.cookie("current" + tabsName, title, {path: '/'});
+            }
+        }
+    );
+
+}
+
+/*
+* 通用标签页显示程序
+* */
+function tabDisplaySettings(tabName) {
+    var tabDiv = tabName + 'Div';
+    tabDiv = $("#" + tabDiv);
+    console.info(tabDiv);
+
+    var currentPage = readCookie("currentPage" + tabName, 1);
+    var pageSize = readCookie("pageSize" +  tabName, pageSize);
+    var totalCount = 20; //这是一个关键点
+
+    //分页
+    tabDiv.pagination({
+        pageSize: pageSize,
+        total: totalCount,
+        showPageList: true,
+        displayMsg: '',
+        layout: ['first', 'prev', 'links', 'next', 'last'],
+        //翻页函数
+        onSelectPage: function (pageNumber, pageSize) {
+            listDataDictionary4Data(pageNumber, pageSize);
+            $.cookie("currentPgae" + tabName, pageNumber);
+        }
+    });
+    tabDiv.pagination("select", currentPage);
+}
+

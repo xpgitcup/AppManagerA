@@ -1,11 +1,9 @@
 $(function () {
     console.info("第一个程序...");
-    // 列出当前正在运行的程序
-    listAppsRunning();
-    // 列出当前硬盘上的文件
-    listAppsInHardDisk();
-    // 列出数据库中的文件
-    listAppsInDB();
+
+    var tabNameList = ["appsRunning", "appsInHardDisk", "appsInDB"];
+    tabPagesManager("appTabs", tabNameList);
+    tabDisplaySettings("appRunning")
 })
 
 

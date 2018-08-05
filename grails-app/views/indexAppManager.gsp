@@ -6,15 +6,18 @@
     <asset:javascript src="user/home.js"/>
 </head>
 <body>
-<div id="appTabs" class="easyui-tabs">
+<div id="appTabsDiv" class="easyui-tabs">
     <div title="运行中..." id="appsRunningDiv">
-        1
+        <div id="listAppsRunningDiv"></div>
+        <div id="paginationListAppsRunningDiv" class="easyui-pagination"></div>
     </div>
     <div title="硬盘中..." id="appsInHardDiskDiv">
-        2
+        <div id="listAppsInHardDiskDiv"></div>
+        <div id="paginationListAppsInHardDiskDiv" class="easyui-pagination"></div>
     </div>
     <div title="数据库..." id="appsInDBDiv">
-        3
+        <div id="listAppsInDBDiv"></div>
+        <div id="paginationListAppsInDBDiv" class="easyui-pagination"></div>
     </div>
 </div>
 
