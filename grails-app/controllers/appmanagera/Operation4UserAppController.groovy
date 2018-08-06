@@ -20,13 +20,19 @@ class Operation4UserAppController {
         apps.add(ua)
         apps.add(ub)
         //--------------------------------------------------------------------------------------------------------------
+        /*
         def env = System.getenv()
-        //println("${env}")
-        def os = env.get("OS")
+        env.each {e->
+            println("${e}")
+        }
+        */
+        def os = System.getProperty("os.name")
         println("当前操作系统是：${os}")
         switch (os) {
-            case "Windows_NT":
+            case "Windows 10":
                 getAppRunningFromWindowsNT()
+                break;
+            case "Linux":
                 break;
         }
         //--------------------------------------------------------------------------------------------------------------
