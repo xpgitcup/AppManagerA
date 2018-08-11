@@ -4,6 +4,34 @@ import grails.converters.JSON
 
 class Operation4UserAppController {
 
+    def listApps() {
+        def userAppList = UserApp.list(params)
+        //--------------------------------------------------------------------------------------------------------------
+        def userAppInfoList = []
+        def apps
+        def os = System.getProperty("os.name")
+        println("当前操作系统是：${os}")
+        switch (os) {
+            case "Windows 10":
+                apps = getAppRunningFromWindowsNT()
+                break;
+            case "Linux":
+                apps = getAppRunningFromLinux()
+                break;
+        }
+
+        //--------------------------------------------------------------------------------------------------------------
+        def templateFile = "showUserApp"
+        if (params.view) {
+            templateFile = params.view
+        }
+        if (request.xhr) {
+            render(template: templateFile, model: [userAppInfoList: userAppInfoList])
+        } else {
+            respond userAppInfoList
+        }
+    }
+
     def countAppsRunning() {
         def apps = getAppsRunning()
         //def result = [count: apps?.size()]
@@ -42,8 +70,14 @@ class Operation4UserAppController {
         //def head = ["PID", "TTY", "STAT", "TIME", "MAJFL", "TRS", "DRS", "RSS", "%MEM", "COMMAND"]
         //String cmd = "ps -ev";
 
-        def head = ["PID", "TTY", "STAT", "TIME", "COMMAND"]
-        String cmd = "ps a"
+        //def head = ["PID", "TTY", "STAT", "TIME", "COMMAND"]
+        //有的时候找不到正在执行的程序...???
+        //String cmd = "ps a"
+
+
+        def head = ["UID", "PID", "PPID", "C", "STIME", "TTY", "TIME", "CMD"]
+        String cmd = "ps -ef"
+
 
         def lines = []
         def appList = []
@@ -62,7 +96,9 @@ class Operation4UserAppController {
         while ((line = br.readLine()) != null) {
             if (line.contains('jar')) {
                 def item = line.split()
-                lines.add(item)
+                if (item.size() < 15) {
+                    lines.add(item)
+                }
                 //------------------------------------------------------------------------------------------------------
                 //def command =
             }
