@@ -37,10 +37,16 @@ class Operation4UserAppController {
     }
 
     def getAppRunningFromLinux() {
-        def head = ["PID", "TTY", "STAT", "TIME", "MAJFL", "TRS", "DRS", "RSS", "%MEM", "COMMAND"]
+        //             0       1       2        3        4         5      6       7        8      9
+        //def head = ["PID", "TTY", "STAT", "TIME", "MAJFL", "TRS", "DRS", "RSS", "%MEM", "COMMAND"]
+        //String cmd = "ps -ev";
+
+        def head = ["PID", "TTY", "STAT", "TIME", "COMMAND"]
+        String cmd = "ps a"
+
         def lines = []
+        def appList = []
         Process p;
-        String cmd = "ps -ev";
         //执行命令
         p = Runtime.getRuntime().exec(cmd);
         //取得命令结果的输出流
@@ -56,6 +62,8 @@ class Operation4UserAppController {
             if (line.contains('jar')) {
                 def item = line.split()
                 lines.add(item)
+                //------------------------------------------------------------------------------------------------------
+                //def command =
             }
         }
         lines.each { e->
