@@ -11,10 +11,6 @@
         <div id="listAppsRunningDiv"></div>
         <div id="paginationListAppsRunningDiv" class="easyui-pagination"></div>
     </div>
-    <div title="数据库..." id="appsInDBDiv">
-        <div id="listAppsInDBDiv"></div>
-        <div id="paginationListAppsInDBDiv" class="easyui-pagination"></div>
-    </div>
 </div>
 
 </body>

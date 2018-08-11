@@ -6,7 +6,8 @@ class Operation4UserAppController {
 
     def countAppsRunning() {
         def apps = getAppsRunning()
-        def result = [count: apps?.size()]
+        //def result = [count: apps?.size()]
+        def result = [count: UserApp.count()]
         if (request.xhr) {
             render result as JSON
         } else {
@@ -28,7 +29,7 @@ class Operation4UserAppController {
         }
         //--------------------------------------------------------------------------------------------------------------
         println(apps)
-        def theModel = [apps: apps]
+        def theModel = [apps: apps, os: os]
         if (request.xhr) {
             render(template: "showRunningApps", model: theModel)
         } else {
@@ -98,20 +99,6 @@ class Operation4UserAppController {
             println("${e}")
         }
         return lines
-    }
-
-    def getAppsInHardDisk() {
-        def apps = []
-        def ua = new UserApp(appName: '测试程序', appStatus: "????", appTitle: "????")
-        def ub = new UserApp(appName: '测试程序', appStatus: "????", appTitle: "????")
-        apps.add(ua)
-        apps.add(ub)
-        def theModel = [apps: apps]
-        if (request.xhr) {
-            render(template: "showApps", model: theModel)
-        } else {
-            theModel
-        }
     }
 
     def getAppsInDB() {
