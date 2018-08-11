@@ -7,13 +7,9 @@
 </head>
 <body>
 <div id="appTabsDiv" class="easyui-tabs">
-    <div title="运行中..." id="appsRunningDiv">
+    <div title="当前应用列表..." id="appsRunningDiv">
         <div id="listAppsRunningDiv"></div>
         <div id="paginationListAppsRunningDiv" class="easyui-pagination"></div>
-    </div>
-    <div title="硬盘中..." id="appsInHardDiskDiv">
-        <div id="listAppsInHardDiskDiv"></div>
-        <div id="paginationListAppsInHardDiskDiv" class="easyui-pagination"></div>
     </div>
     <div title="数据库..." id="appsInDBDiv">
         <div id="listAppsInDBDiv"></div>

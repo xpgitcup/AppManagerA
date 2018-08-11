@@ -4,7 +4,6 @@ $(function () {
     var tabNameList = ["appsRunning", "appsInHardDisk", "appsInDB"];
     tabPagesManager("appTabsDiv", tabNameList);
     tabDisplaySettings("paginationListAppsRunningDiv", "operation4UserApp/countAppsRunning", "listAppsRunning")
-    tabDisplaySettings("paginationListAppsInHardDiskDiv", "operation4UserApp/countAppsRunning", "listAppsInHardDisk")
     tabDisplaySettings("paginationListAppsInDBDiv", "operation4UserApp/countAppsRunning", "listAppsInDB")
 })
 

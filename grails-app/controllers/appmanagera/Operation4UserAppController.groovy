@@ -23,6 +23,7 @@ class Operation4UserAppController {
                 apps = getAppRunningFromWindowsNT()
                 break;
             case "Linux":
+                apps = getAppRunningFromLinux()
                 break;
         }
         //--------------------------------------------------------------------------------------------------------------
@@ -33,6 +34,34 @@ class Operation4UserAppController {
         } else {
             theModel
         }
+    }
+
+    def getAppRunningFromLinux() {
+        def head = ["PID", "TTY", "STAT", "TIME", "MAJFL", "TRS", "DRS", "RSS", "%MEM", "COMMAND"]
+        def lines = []
+        Process p;
+        String cmd = "ps -ev";
+        //执行命令
+        p = Runtime.getRuntime().exec(cmd);
+        //取得命令结果的输出流
+        InputStream fis = p.getInputStream();
+        //用一个读输出流类去读
+        //用缓冲器读行
+        //BufferedReader br = new BufferedReader(new InputStreamReader(fis, "utf-8"));
+        BufferedReader br = new BufferedReader(new InputStreamReader(fis, "gbk"));
+        String line = null;
+        lines.add(head)
+        //直到读完为止
+        while ((line = br.readLine()) != null) {
+            if (line.contains('jar')) {
+                def item = line.split()
+                lines.add(item)
+            }
+        }
+        lines.each { e->
+            println("${e}")
+        }
+        return lines
     }
 
     def getAppRunningFromWindowsNT() {

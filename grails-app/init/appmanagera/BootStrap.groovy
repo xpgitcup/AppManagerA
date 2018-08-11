@@ -15,7 +15,7 @@ class BootStrap {
     def checkDirectory(dir, baseDirName) {
         if (dir.isDirectory()) {
             def fileList = dir.listFiles()
-            fileList.each { e->
+            fileList.each { e ->
                 if (e.isDirectory()) {
                     checkDirectory(e, baseDirName)
                 } else {
@@ -24,16 +24,16 @@ class BootStrap {
                         def name = e.name
                         def pName = path.minus(baseDirName)
                         def ppName = pName.minus(name)
-                        println("path: ${path}")
-                        println("parent: ${ppName}")
-                        println("name: ${name}")
-                        def newApp = new UserApp(
-                                baseDirName: baseDirName,
-                                appTitle: ppName,
-                                appName: name,
-                                appStatus: 'D'
-                        )
-                        if (!UserApp.findAllByAppName(name)) {
+                        if (!UserApp.findAllByAppNameAndAppTitle(name, ppName)) {
+                            println("path: ${path}")
+                            println("parent: ${ppName}")
+                            println("name: ${name}")
+                            def newApp = new UserApp(
+                                    baseDirName: baseDirName,
+                                    appTitle: ppName,
+                                    appName: name,
+                                    appStatus: 'D'
+                            )
                             newApp.save(true)
                         }
                     }
